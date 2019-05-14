@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ApiApp
 {
@@ -20,9 +21,28 @@ namespace ApiApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private long NextLaunch;
         public MainWindow()
         {
             InitializeComponent();
+            ZjistiNext();
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(NastavitLabel);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
+        }
+        public void ZjistiNext()
+        {
+            string jsonNext = HttpManager.NacistNext();
+            Dictionary<string, object> list = JsonConverter.DictionaryZJson(jsonNext);
+            NextLaunch = int.Parse(list["launch_date_unix"].ToString());
+        }
+        public void NastavitLabel(object sender, EventArgs e)
+        {
+            long ZbyvajiciCas = NextLaunch - DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            TimeSpan time = TimeSpan.FromSeconds(ZbyvajiciCas);
+            string str = time.ToString(@"ddd\:hh\:mm\:ss");
+            OdpocetLabel.Content = str;
         }
     }
 }
