@@ -13,5 +13,9 @@ namespace ApiApp
         {
             return JsonConvert.DeserializeObject<Dictionary<string, object>>(input);
         }
+        public static List<string> ListZJson(string input)
+        {
+            return JsonConvert.DeserializeObject<List<string>>(input);
+        }
     }
 }

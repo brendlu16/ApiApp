@@ -30,13 +30,23 @@ namespace ApiApp
             dispatcherTimer.Tick += new EventHandler(NastavitLabel);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
+            Frame1.NavigationService.Navigate(new Lety());
         }
         public void ZjistiNext()
         {
             string jsonNext = HttpManager.NacistNext();
             Dictionary<string, object> list = JsonConverter.DictionaryZJson(jsonNext);
             NextLaunch = int.Parse(list["launch_date_unix"].ToString());
+            NazevLabel.Content = list["mission_name"].ToString();
+            DetailyButton.Tag = list["flight_number"].ToString();
         }
+
+        private void DetailyButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            Frame1.NavigationService.Navigate(new Let(int.Parse(button.Tag.ToString())));
+        }
+
         public void NastavitLabel(object sender, EventArgs e)
         {
             long ZbyvajiciCas = NextLaunch - DateTimeOffset.UtcNow.ToUnixTimeSeconds();

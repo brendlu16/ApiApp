@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:ApiApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Label Name="OdpocetLabel"></Label>
-    </Grid>
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal" Margin="20" Height="50" VerticalAlignment="Top">
+            <Label Content="Do dalšího letu zbývá:" FontSize="18" VerticalContentAlignment="Center"></Label>
+            <Label Name="OdpocetLabel" Width="150" Content="?" FontSize="18" VerticalContentAlignment="Center"></Label>
+            <Label Name="NazevLabel" Width="290" Margin="10" HorizontalContentAlignment="Right" Content="?" FontSize="18" VerticalContentAlignment="Center"></Label>
+            <Button Name="DetailyButton" Width="90" Content="Detaily" FontSize="18" Click="DetailyButton_Click"></Button>
+        </StackPanel>
+        <Frame Name="Frame1" NavigationUIVisibility="Hidden" Height="320"></Frame>
+    </StackPanel>
 </Window>

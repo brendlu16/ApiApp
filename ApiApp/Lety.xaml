@@ -1,0 +1,40 @@
+﻿<Page x:Class="ApiApp.Lety"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ApiApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="320" d:DesignWidth="800"
+      Title="Lety">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Label Content="Předešlé lety" HorizontalAlignment="Center"></Label>
+            <ListView Name="ListL" Height="290" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ItemClicked" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListViewItem Tag="1">
+                    <StackPanel Orientation="Horizontal" Width="360" Height="120">
+                        <StackPanel Orientation="Vertical" Width="210">
+                            <Label Content="ssdsadsdsada das adas d " HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                            <Label Content="sadasdasdasdsdsda d"></Label>
+                        </StackPanel>
+                        <Image Width="150" Height="120" Source="https://live.staticflickr.com/65535/46856594435_206c773b5a_o.jpg"></Image>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <Label Content="Plánované lety" HorizontalAlignment="Center"></Label>
+            <ListView Name="ListR"  Height="290" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible"></ListView>
+        </StackPanel>
+    </Grid>
+</Page>
